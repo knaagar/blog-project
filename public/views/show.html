@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://cdn.pixabay.com/photo/2014/05/21/11/53/the-light-bulb-349400_960_720.png" />
+    <title>Post</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link href="https://cdn.jsdelivr.net/gh/knaagar/CSS-Reset/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <a class="btna" href="/">Home</a>
+    </div>
+    <h1 class="title"></h1>
+    <br>
+    <p class="date"></p>
+
+    <p class="date" style="font-family: 'Epilogue', sans-serif;"></p>
+    <br><br>
+    <p id="info"></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        document.getElementsByTagName('h1')[0].innerHTML = '404 - Page Not Found';
+        var path = location.pathname;
+        var directories = path.split("/");
+        var lastdirec = directories[(directories.length - 1)];
+        $.getJSON('/api', function(data) {
+            let nu = parseInt(lastdirec);
+            document.getElementsByTagName('h1')[0].innerHTML = data[parseInt(lastdirec)].title;
+            document.getElementsByTagName('p')[0].innerHTML = `Created at: ${data[parseInt(lastdirec)].date}`;
+            document.getElementsByTagName('p')[1].innerHTML = `Description: ${data[parseInt(lastdirec)].desc}`;
+            document.getElementsByTagName('p')[2].innerHTML = data[parseInt(lastdirec)].post;
+            document.title = 'Post - ' + (nu+1);
+        })
+        
+    </script>
+
+</body>
+</html>
