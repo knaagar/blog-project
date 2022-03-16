@@ -90,3 +90,15 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.center {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin: 100px;
+}
+
+.center cite {
+    text-align: center;
+    color: gray;
+}
